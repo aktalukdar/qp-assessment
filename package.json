@@ -1,0 +1,33 @@
+{
+  "name": "grocery-booking-api",
+  "version": "1.0.0",
+  "main": "dist/app.js",
+  "scripts": {
+    "dev": "ts-node src/app.ts",
+    "build": "tsc",
+    "start": "npm run build && node dist/app.js"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.5.0",
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "lodash": "^4.17.21",
+    "underscore": "^1.13.7",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.1",
+    "@types/jsonwebtoken": "^9.0.9",
+    "@types/lodash": "^4.17.16",
+    "@types/node": "^22.13.13",
+    "@types/underscore": "^1.13.0",
+    "prisma": "^6.5.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  }
+}

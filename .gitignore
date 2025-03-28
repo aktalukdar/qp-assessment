@@ -1,0 +1,12 @@
+# Ignore the Prisma migrations folder
+prisma/migrations/
+
+# Ignore the Prisma client (generated files)
+node_modules/
+prisma/generated/
+
+# Ignore environment variables
+.env
+
+# Ignore build files
+dist/

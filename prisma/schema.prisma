@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int           @id @default(autoincrement())
+  name        String
+  email       String        @unique
+  password    String
+  role        Role          @default(USER)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  order       Order[]
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+
+enum Unit {
+  KG        // Kilograms
+  LITER     // Liters
+  PCS       // Pieces
+  DOZEN     // Dozen
+}
+
+model Grocery {
+  id        Int         @id @default(autoincrement())
+  name      String      @unique
+  price     Float
+  stock     Int
+  unit      Unit    
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  OrderItem OrderItem[]
+}
+
+model Order {
+  id         Int         @id @default(autoincrement())
+  userId     Int
+  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  totalPrice Float
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+  items      OrderItem[]
+}
+
+model OrderItem {
+  id        Int     @id @default(autoincrement())
+  orderId   Int
+  groceryId Int
+  quantity  Int
+  priceAtPurchase Float // Store price at the time of order
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+  grocery   Grocery @relation(fields: [groceryId], references: [id], onDelete: Cascade)
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+}

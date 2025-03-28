@@ -32,7 +32,14 @@ npm install
 2. Update the environment variables with the appropriate values based on your setup.  
 
 
-### 4️⃣ Prisma Configuration  
+### 4️⃣ Installing MySQL 8 on macOS (using Homebrew)
+```sh
+brew install mysql@8.0
+brew services start mysql
+mysql_secure_installation
+```
+
+### 5️⃣ Prisma Configuration  
 Generate Prisma Client:  
 ```sh
 npx prisma generate
@@ -43,7 +50,7 @@ Apply database migrations:
 npx prisma migrate dev --name init
 ```
 
-### 5️⃣ Run the Server  
+### 6️⃣ Run the Server  
 ```sh
 npm run dev
 ```

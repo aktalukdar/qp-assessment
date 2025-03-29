@@ -1,0 +1,15 @@
+node_modules
+prisma/migrations
+prisma/generated
+.env
+dist
+build
+Dockerfile
+docker-compose.yml
+# Ignore editor and system files
+.idea
+.vscode
+*.swp
+*.swo
+.DS_Store
+Thumbs.db

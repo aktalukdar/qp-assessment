@@ -10,3 +10,8 @@ prisma/generated/
 
 # Ignore build files
 dist/
+
+
+
+.DS_Store
+

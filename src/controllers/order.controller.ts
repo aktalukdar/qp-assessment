@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { prisma } from '../config/prisma';
+import { Prisma } from '@prisma/client';
 
 /**
  * @desc   Create a new order with multiple grocery items
@@ -27,7 +28,7 @@ export const createOrder = async (req: Request, res: Response): Promise<any> => 
         // Check stock availability & calculate total price
         let totalPrice = 0;
         const orderItems = items.map(item => {
-            const grocery = groceries.find(g => g.id === item.groceryId);
+            const grocery = groceries.find((g: any) => g.id === item.groceryId);
             if (!grocery) {
                 throw new Error(`Grocery item with ID ${item.groceryId} not found.`);
             }
@@ -39,7 +40,7 @@ export const createOrder = async (req: Request, res: Response): Promise<any> => 
         });
 
         // Create order transaction
-        const order = await prisma.$transaction(async (tx) => {
+        const order = await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
             // Create order
             const newOrder = await tx.order.create({
                 data: {
